@@ -18,10 +18,7 @@ intellij {
     type.set("IC") // 使用IntelliJ IDEA社区版作为开发基础
     
     // 使用合适的插件依赖
-    plugins.set(listOf(
-        // 移除了Java插件依赖，使用更通用的平台依赖
-        "com.intellij.modules.platform"
-    ))
+    plugins.set(listOf())
 }
 
 dependencies {

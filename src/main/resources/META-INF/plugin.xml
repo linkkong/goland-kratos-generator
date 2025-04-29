@@ -5,22 +5,74 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Kratos-generator-plugin</name>
+    <name>Kratos Generator</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="mxc@example.com" url="https://github.com/linkkong/goland-kratos-generator">mxc</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Kratos 生成器插件，提供以下功能：<br>
-    <ul>
-      <li>生成 Proto 客户端代码：右键点击 .proto 文件（非 conf.proto）</li>
-      <li>生成 Service 服务端代码：右键点击 .proto 文件（非 conf.proto）</li>
-      <li>生成配置文件：右键点击 conf.proto 文件</li>
-      <li>执行 wire 依赖注入：右键点击 cmd/xxx 目录</li>
-    </ul>
+    <h1>Kratos Generator Plugin</h1>
+    
+    <p>适用于 GoLand 的 Kratos 微服务框架代码生成器插件，为 <a href="https://github.com/go-kratos/kratos">Kratos</a> 项目提供快捷的代码生成功能。</p>
+    
+    <h2>功能特性</h2>
+    
+    <p>插件在项目视图中提供以下右键菜单选项：</p>
+    
+    <ol>
+      <li><b>生成 Proto 客户端代码</b>
+        <ul>
+          <li>触发对象：非 conf.proto 的 .proto 文件</li>
+          <li>功能：在项目根目录下执行 <code>kratos proto client &lt;相对路径&gt;</code>，自动生成该 proto 文件对应的客户端代码</li>
+        </ul>
+      </li>
+      
+      <li><b>生成 Service 服务端代码</b>
+        <ul>
+          <li>触发对象：非 conf.proto 的 .proto 文件</li>
+          <li>功能：在项目根目录下执行 <code>kratos proto server &lt;相对路径&gt; -t internal/service</code>，自动生成该 proto 文件对应的服务端代码</li>
+        </ul>
+      </li>
+      
+      <li><b>生成配置文件</b>
+        <ul>
+          <li>触发对象：conf.proto 文件</li>
+          <li>功能：在项目根目录下执行 <code>make config</code>，自动生成或更新配置文件</li>
+        </ul>
+      </li>
+      
+      <li><b>执行 wire 依赖注入</b>
+        <ul>
+          <li>触发对象：cmd/xxx 目录</li>
+          <li>功能：在当前右键点击的 cmd/xxx 目录下执行 <code>wire .</code>，自动生成依赖注入代码</li>
+        </ul>
+      </li>
+    </ol>
+    
+    <h2>使用前提</h2>
+    
+    <p>确保已正确安装以下工具：</p>
+    
+    <ol>
+      <li>Kratos CLI 工具：
+        <pre><code>go install github.com/go-kratos/kratos/cmd/kratos/v2@latest</code></pre>
+      </li>
+      
+      <li>Wire 工具：
+        <pre><code>go install github.com/google/wire/cmd/wire@latest</code></pre>
+      </li>
+    </ol>
+    
+    <h2>使用方法</h2>
+    
+    <ol>
+      <li>在 GoLand 的项目视图中，右键点击相应的文件或目录</li>
+      <li>在弹出的上下文菜单中选择对应的功能</li>
+      <li>执行结果将在底部的 "Kratos Generator" 工具窗口中显示</li>
+    </ol>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
