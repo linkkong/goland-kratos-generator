@@ -1,0 +1,17 @@
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景圆形 -->
+    <circle cx="6.5" cy="6.5" r="5.5" fill="url(#gradientBackground)"/>
+    
+    <!-- 代码生成符号 - 简化版 -->
+    <path d="M4.5 4L3 6.5L4.5 9" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.5 4L10 6.5L8.5 9" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7 3L6 10" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- 渐变定义 -->
+    <defs>
+        <linearGradient id="gradientBackground" x1="1" y1="1" x2="12" y2="12" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1E88E5"/>
+            <stop offset="1" stop-color="#6A1B9A"/>
+        </linearGradient>
+    </defs>
+</svg> 

@@ -84,7 +84,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <!-- 注册一个工具窗口用于显示命令输出 -->
-        <toolWindow id="Kratos Generator" secondary="true" icon="AllIcons.General.GearPlain" 
+        <toolWindow id="Kratos Generator" secondary="true" icon="/META-INF/toolWindowIcon.svg" 
                     anchor="bottom" factoryClass="com.mxc.kratosgeneratorplugin.KratosToolWindowFactory"/>
     </extensions>
     
@@ -92,6 +92,7 @@
         <action id="com.mxc.kratosgeneratorplugin.GenerateProtoClientAction" 
                 class="com.mxc.kratosgeneratorplugin.GenerateProtoClientAction"
                 text="生成 Proto 客户端代码" 
+                icon="/META-INF/actionIcon_client.svg"
                 description="在项目根目录下执行 kratos proto client 命令，自动生成该 proto 文件对应的客户端代码">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
@@ -99,6 +100,7 @@
         <action id="com.mxc.kratosgeneratorplugin.GenerateServiceAction" 
                 class="com.mxc.kratosgeneratorplugin.GenerateServiceAction"
                 text="生成 Service 服务端代码" 
+                icon="/META-INF/actionIcon_server.svg"
                 description="在项目根目录下执行 kratos proto server 命令，自动生成该 proto 文件对应的服务端代码">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
@@ -106,6 +108,7 @@
         <action id="com.mxc.kratosgeneratorplugin.GenerateConfigAction" 
                 class="com.mxc.kratosgeneratorplugin.GenerateConfigAction"
                 text="生成配置文件" 
+                icon="/META-INF/actionIcon_config.svg"
                 description="在项目根目录下执行 make config 命令，自动生成或更新配置文件">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
@@ -113,6 +116,7 @@
         <action id="com.mxc.kratosgeneratorplugin.RunWireAction" 
                 class="com.mxc.kratosgeneratorplugin.RunWireAction"
                 text="执行 wire" 
+                icon="/META-INF/actionIcon_wire.svg"
                 description="在当前目录下执行 wire . 命令，自动生成依赖注入代码">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
