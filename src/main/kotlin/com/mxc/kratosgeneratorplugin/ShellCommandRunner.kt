@@ -128,7 +128,7 @@ object ShellCommandRunner {
      * 创建工具窗口内容
      */
     private fun createToolWindowContent(toolWindow: com.intellij.openapi.wm.ToolWindow) {
-        val contentFactory = ContentFactory.SERVICE.getInstance()
+        val contentFactory = ContentFactory.getInstance()
         val panel = JPanel(BorderLayout())
         
         // 创建文本输出区域

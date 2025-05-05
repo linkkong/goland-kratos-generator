@@ -4,6 +4,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.vfs.VfsUtilCore
+import com.intellij.openapi.project.guessProjectDir
 
 /**
  * 生成 Service 服务端代码 Action
@@ -17,7 +18,8 @@ class GenerateServiceAction : AnAction("生成 Service 服务端代码") {
         val projectRoot = project.basePath ?: return
         
         // 获取相对于项目根目录的相对路径
-        val relativePath = VfsUtilCore.getRelativePath(file, project.baseDir) ?: return
+        val projectDir = project.guessProjectDir() ?: return
+        val relativePath = VfsUtilCore.getRelativePath(file, projectDir) ?: return
         
         // 构造命令
         val command = "kratos proto server $relativePath -t internal/service"

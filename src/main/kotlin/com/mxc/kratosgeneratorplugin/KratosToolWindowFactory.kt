@@ -25,7 +25,7 @@ import javax.swing.text.StyleContext
  */
 class KratosToolWindowFactory : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val contentFactory = ContentFactory.SERVICE.getInstance()
+        val contentFactory = ContentFactory.getInstance()
         val mainPanel = JBPanel<JBPanel<*>>(BorderLayout())
         
         // 创建欢迎面板
