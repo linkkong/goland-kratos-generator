@@ -1,5 +1,42 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# 版本升级指南
+
+## 版本号规则
+
+项目采用语义化版本管理：`主版本.次版本.修订版本`
+- 主版本：不兼容的API变更
+- 次版本：向下兼容的功能新增
+- 修订版本：向下兼容的问题修复
+
+## 升级步骤
+
+1. 在 [build.gradle.kts](mdc:build.gradle.kts) 中更新 `version` 属性
+   ```kotlin
+   group = "com.mxc"
+   version = "1.0.3" // 更新此处
+   ```
+
+2. 重新构建插件：
+   ```bash
+   ./gradlew buildPlugin
+   ```
+
+3. 复制新生成的插件包到项目根目录：
+   ```bash
+   cp build/distributions/kratos-generator-plugin-<新版本号>.zip ./
+   ```
+
+4. 提交并推送变更
+   ```bash
+   git add .
+   git commit -m "升级插件版本至 <新版本号>"
+   git push origin main
+   ```
+
+## 发布规则
+
+上传插件到IDE插件仓库时，必须确保版本号未被使用过，否则会出现冲突。每次上传都需要使用新的版本号。

@@ -1,5 +1,41 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# 项目结构指南
+
+## 核心文件
+
+主要的插件配置文件是 [src/main/resources/META-INF/plugin.xml](mdc:src/main/resources/META-INF/plugin.xml)，该文件定义了插件的基本信息、依赖关系以及功能扩展点。
+
+构建配置在 [build.gradle.kts](mdc:build.gradle.kts) 中定义，包含版本号、依赖项及IntelliJ平台配置。
+
+## 功能操作类
+
+插件提供四种主要功能，每种功能由单独的Action类实现：
+
+1. **生成Proto客户端代码**: [src/main/kotlin/com/mxc/kratosgeneratorplugin/GenerateProtoClientAction.kt](mdc:src/main/kotlin/com/mxc/kratosgeneratorplugin/GenerateProtoClientAction.kt)
+2. **生成Service服务端代码**: [src/main/kotlin/com/mxc/kratosgeneratorplugin/GenerateServiceAction.kt](mdc:src/main/kotlin/com/mxc/kratosgeneratorplugin/GenerateServiceAction.kt) 
+3. **生成配置文件**: [src/main/kotlin/com/mxc/kratosgeneratorplugin/GenerateConfigAction.kt](mdc:src/main/kotlin/com/mxc/kratosgeneratorplugin/GenerateConfigAction.kt)
+4. **执行Wire依赖注入**: [src/main/kotlin/com/mxc/kratosgeneratorplugin/RunWireAction.kt](mdc:src/main/kotlin/com/mxc/kratosgeneratorplugin/RunWireAction.kt)
+
+## 工具类
+
+[src/main/kotlin/com/mxc/kratosgeneratorplugin/ShellCommandRunner.kt](mdc:src/main/kotlin/com/mxc/kratosgeneratorplugin/ShellCommandRunner.kt) 负责执行Shell命令并将输出显示在工具窗口中。
+
+## UI组件
+
+[src/main/kotlin/com/mxc/kratosgeneratorplugin/KratosToolWindowFactory.kt](mdc:src/main/kotlin/com/mxc/kratosgeneratorplugin/KratosToolWindowFactory.kt) 负责创建和初始化工具窗口。
+
+## 图标资源
+
+所有图标资源存放在 `src/main/resources/META-INF/` 目录下：
+
+- 插件主图标: [src/main/resources/META-INF/pluginIcon.svg](mdc:src/main/resources/META-INF/pluginIcon.svg)
+- 工具窗口图标: [src/main/resources/META-INF/toolWindowIcon.svg](mdc:src/main/resources/META-INF/toolWindowIcon.svg)
+- 操作图标: [src/main/resources/META-INF/actionIcon_client.svg](mdc:src/main/resources/META-INF/actionIcon_client.svg)等
+
+## 版本升级指南
+
+升级版本时，需要修改 [build.gradle.kts](mdc:build.gradle.kts) 中的 `version` 属性，然后重新构建并生成发布包。

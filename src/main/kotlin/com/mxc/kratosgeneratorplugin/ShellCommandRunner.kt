@@ -4,6 +4,7 @@ import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.execution.process.OSProcessHandler
 import com.intellij.execution.process.ProcessAdapter
 import com.intellij.execution.process.ProcessEvent
+import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.util.Key
@@ -28,6 +29,7 @@ object ShellCommandRunner {
     private const val TOOL_WINDOW_ID = "Kratos Generator"
     private const val CONTENT_DISPLAY_NAME = "输出"
     
+    private val LOG = Logger.getInstance(ShellCommandRunner::class.java)
     private var outputPane: JTextPane? = null
     private var toolWindowContent: Content? = null
     
@@ -41,6 +43,9 @@ object ShellCommandRunner {
      */
     fun runInConsole(project: Project, workDir: String, command: String, title: String) {
         try {
+            // 记录当前运行环境信息
+            LOG.info("运行环境: ${IDEVersionHelper.getVersionInfo()}")
+            
             // 获取或创建工具窗口
             val toolWindowManager = ToolWindowManager.getInstance(project)
             var toolWindow = toolWindowManager.getToolWindow(TOOL_WINDOW_ID)
@@ -81,10 +86,7 @@ object ShellCommandRunner {
             appendToOutput("执行命令: $command\n在目录: $workDir\n\n", commandStyle)
             
             // 创建命令行
-            val commandLine = GeneralCommandLine()
-            commandLine.withExePath("/bin/sh")
-            commandLine.withParameters("-c", command)
-            commandLine.withWorkDirectory(workDir)
+            val commandLine = createCommandLine(command, workDir)
             
             // 创建进程处理器
             val processHandler = OSProcessHandler(commandLine)
@@ -120,14 +122,28 @@ object ShellCommandRunner {
             // 启动进程
             processHandler.startNotify()
         } catch (e: Exception) {
+            LOG.error("命令执行失败", e)
             Messages.showErrorDialog(project, "命令执行失败: ${e.message}", title)
         }
+    }
+    
+    /**
+     * 创建命令行对象，具有版本兼容性
+     */
+    private fun createCommandLine(command: String, workDir: String): GeneralCommandLine {
+        val commandLine = GeneralCommandLine()
+        commandLine.withExePath("/bin/sh")
+        commandLine.withParameters("-c", command)
+        commandLine.withWorkDirectory(workDir)
+        
+        return commandLine
     }
     
     /**
      * 创建工具窗口内容
      */
     private fun createToolWindowContent(toolWindow: com.intellij.openapi.wm.ToolWindow) {
+        // 使用版本兼容性工具创建ContentFactory实例
         val contentFactory = ContentFactory.getInstance()
         val panel = JPanel(BorderLayout())
         

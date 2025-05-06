@@ -3,6 +3,7 @@ package com.mxc.kratosgeneratorplugin
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 
 /**
  * 生成配置文件 Action
@@ -10,6 +11,11 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
  * 功能描述：在项目根目录下执行 make config，自动生成或更新配置文件。
  */
 class GenerateConfigAction : AnAction("生成配置文件") {
+    
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.BGT
+    }
+    
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val projectRoot = project.basePath ?: return

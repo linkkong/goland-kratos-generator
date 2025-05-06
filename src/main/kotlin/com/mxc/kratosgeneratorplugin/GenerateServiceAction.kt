@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.openapi.project.guessProjectDir
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 
 /**
  * 生成 Service 服务端代码 Action
@@ -12,6 +13,11 @@ import com.intellij.openapi.project.guessProjectDir
  * 功能描述：在项目根目录下执行 kratos proto server <相对路径> -t internal/service，自动生成该 proto 文件对应的服务端代码。
  */
 class GenerateServiceAction : AnAction("生成 Service 服务端代码") {
+    
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.BGT
+    }
+    
     override fun actionPerformed(e: AnActionEvent) {
         val file = e.getData(CommonDataKeys.VIRTUAL_FILE) ?: return
         val project = e.project ?: return

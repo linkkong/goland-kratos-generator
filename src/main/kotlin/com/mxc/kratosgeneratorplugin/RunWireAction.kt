@@ -3,6 +3,7 @@ package com.mxc.kratosgeneratorplugin
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 
 /**
  * 执行 wire 依赖注入 Action
@@ -10,6 +11,11 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
  * 功能描述：在当前右键点击的 cmd/xxx 目录下执行 wire .，自动生成依赖注入代码。
  */
 class RunWireAction : AnAction("执行 wire") {
+    
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.BGT
+    }
+    
     override fun actionPerformed(e: AnActionEvent) {
         val dir = e.getData(CommonDataKeys.VIRTUAL_FILE) ?: return
         val project = e.project ?: return
