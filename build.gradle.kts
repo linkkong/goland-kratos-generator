@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.mxc"
-version = "1.0.4"
+version = "1.0.5"
 
 repositories {
     mavenCentral()
@@ -18,8 +18,8 @@ repositories {
 // 文档: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 dependencies {
     intellijPlatform {
-        // 使用2025.1版本进行调试
-        intellijIdeaCommunity("2025.1")
+        // 切换为2022.3依赖，最大兼容JDK 17
+        intellijIdeaCommunity("2022.3")
     }
     
     // 添加额外的运行时依赖
@@ -27,14 +27,14 @@ dependencies {
 }
 
 tasks {
-    // 设置Java编译版本为21，与2025.1兼容
+    // 设置Java编译版本为17，与2025.1兼容
     withType<JavaCompile> {
-        sourceCompatibility = "21"
-        targetCompatibility = "21"
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
     }
 
