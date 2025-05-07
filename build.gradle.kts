@@ -19,7 +19,7 @@ repositories {
 dependencies {
     intellijPlatform {
         // 切换为2022.3依赖，最大兼容JDK 17
-        intellijIdeaCommunity("2022.3")
+        intellijIdeaCommunity("2025.1")
     }
     
     // 添加额外的运行时依赖
